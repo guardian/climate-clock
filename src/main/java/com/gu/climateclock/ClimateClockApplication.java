@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 @SpringBootApplication
 @RestController
@@ -44,7 +45,7 @@ public class ClimateClockApplication {
 				"https://api.climateclock.world/v1/clock",
 				ClockResponse.class
 		);
-		return handlebars.compile("clock").apply(response);
+		return response.status;
 	}
 
 	@Bean
