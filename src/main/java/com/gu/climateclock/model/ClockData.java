@@ -5,13 +5,5 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ClockData {
-
-    public final ClockModules modules;
-
-    @JsonCreator
-    public ClockData(
-            ClockModules modules
-    ) {
-        this.modules = modules;
-    }
+    public ClockModules modules;
 }
