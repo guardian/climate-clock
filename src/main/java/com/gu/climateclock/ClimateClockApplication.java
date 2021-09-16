@@ -14,10 +14,10 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @RestController
-public class ClimateclockApplication {
+public class ClimateClockApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ClimateclockApplication.class, args);
+		SpringApplication.run(ClimateClockApplication.class, args);
 	}
 
 	@GetMapping("/hello")
