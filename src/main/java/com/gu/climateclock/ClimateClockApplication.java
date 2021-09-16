@@ -9,7 +9,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,15 +21,21 @@ import java.io.IOException;
 @RestController
 public class ClimateClockApplication {
 
+	private final Handlebars handlebars;
+
+	public ClimateClockApplication() {
+		TemplateLoader templateLoader = new ClassPathTemplateLoader("/templates", ".html");
+		handlebars = new Handlebars(templateLoader);
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(ClimateClockApplication.class, args);
 	}
 
 	@GetMapping("/hello")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) throws IOException {
-		Handlebars handlebars = new Handlebars();
-		Template template = handlebars.compileInline("Hello {{this}}!");
-		return template.apply(name);
+		final Template helloTemplate = handlebars.compileInline("Hello {{this}}!");
+		return helloTemplate.apply(name);
 	}
 
 	@GetMapping("/clock")
@@ -39,14 +44,11 @@ public class ClimateClockApplication {
 				"https://api.climateclock.world/v1/clock",
 				ClockResponse.class
 		);
-		TemplateLoader templateLoader = new ClassPathTemplateLoader("/templates", ".html");
-		Handlebars handlebars = new Handlebars(templateLoader);
 		return handlebars.compile("clock").apply(response);
 	}
 
 	@Bean
 	public RestTemplate restTemplate(@NonNull RestTemplateBuilder builder) {
-		builder.additionalMessageConverters(new MappingJackson2HttpMessageConverter());
 		return builder.build();
 	}
 }
