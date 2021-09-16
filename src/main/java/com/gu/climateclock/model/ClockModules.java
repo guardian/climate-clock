@@ -16,4 +16,10 @@ public class ClockModules {
     ) {
         this.carbonDeadlineModule = carbonDeadlineModule;
     }
+
+    public CarbonDeadlineModule getCarbonDeadlineModule() {
+        return carbonDeadlineModule;
+    }
+
+    
 }
