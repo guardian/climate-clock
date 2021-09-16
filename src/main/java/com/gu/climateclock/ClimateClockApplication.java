@@ -4,6 +4,7 @@ import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
 import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
+import com.gu.climateclock.model.ClimateCrisisData;
 import com.gu.climateclock.model.ClockResponse;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -41,11 +42,13 @@ public class ClimateClockApplication {
 
 	@GetMapping("/clock")
 	public String clock(@NonNull RestTemplate restTemplate) throws IOException {
-		final ClockResponse response = restTemplate.getForObject(
+		final ClockResponse clockResponse = restTemplate.getForObject(
 				"https://api.climateclock.world/v1/clock",
 				ClockResponse.class
 		);
-		return handlebars.compile("clock").apply(response);
+		ClimateCrisisData climateCrisisData = new ClimateCrisisData();
+		climateCrisisData.setClockResponse(clockResponse);
+		return handlebars.compile("clock").apply(climateCrisisData);
 	}
 
 	@Bean
