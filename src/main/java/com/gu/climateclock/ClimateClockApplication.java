@@ -1,5 +1,9 @@
 package com.gu.climateclock;
 
+import com.github.jknack.handlebars.Handlebars;
+import com.github.jknack.handlebars.Template;
+import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
+import com.github.jknack.handlebars.io.TemplateLoader;
 import com.gu.climateclock.model.ClockResponse;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
+
 @SpringBootApplication
 @RestController
 public class ClimateClockApplication {
@@ -21,17 +27,21 @@ public class ClimateClockApplication {
 	}
 
 	@GetMapping("/hello")
-	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return String.format("Hello %s!", name);
+	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) throws IOException {
+		Handlebars handlebars = new Handlebars();
+		Template template = handlebars.compileInline("Hello {{this}}!");
+		return template.apply(name);
 	}
 
 	@GetMapping("/clock")
-	public String clock(@NonNull RestTemplate restTemplate) {
+	public String clock(@NonNull RestTemplate restTemplate) throws IOException {
 		final ClockResponse response = restTemplate.getForObject(
 				"https://api.climateclock.world/v1/clock",
 				ClockResponse.class
 		);
-		return response.status;
+		TemplateLoader templateLoader = new ClassPathTemplateLoader("/templates", ".html");
+		Handlebars handlebars = new Handlebars(templateLoader);
+		return handlebars.compile("clock").apply(response);
 	}
 
 	@Bean
