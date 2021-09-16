@@ -45,7 +45,7 @@ public class ClimateClockApplication {
 				"https://api.climateclock.world/v1/clock",
 				ClockResponse.class
 		);
-		return response.status;
+		return handlebars.compile("clock").apply(response);
 	}
 
 	@Bean
