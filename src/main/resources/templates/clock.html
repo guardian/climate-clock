@@ -26,5 +26,20 @@
 
 {{/with}}
 
+{{#with guMobileFrontsResponse}}
+<section>
+    <h2>Latest news</h2>
+    <p>Climate crisis headlines from <a href="https://www.theguardian.com/environment/climate-crisis">The Guardian</a></p>
+    <ul>
+        {{#each cards}}
+        <li>
+            <a href="{{item.links.webUri}}">{{item.title}}</a>
+            <time datetime="{{item.machineDate}}">{{item.humanDate}}</time>
+        </li>
+        {{/each}}
+    </ul>
+</section>
+{{/with}}
+
 </body>
 </html>
