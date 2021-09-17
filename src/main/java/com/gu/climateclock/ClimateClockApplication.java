@@ -6,6 +6,9 @@ import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
 import com.gu.climateclock.model.ClimateCrisisData;
 import com.gu.climateclock.model.ClockResponse;
+import com.gu.climateclock.model.GuMobileCardData;
+import com.gu.climateclock.model.GuMobileFrontsResponse;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -17,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.util.logging.Logger;
 
 @SpringBootApplication
 @RestController
@@ -46,8 +48,23 @@ public class ClimateClockApplication {
 				"https://api.climateclock.world/v1/clock",
 				ClockResponse.class
 		);
+
+		final GuMobileFrontsResponse guMobileFrontsResponse = restTemplate.getForObject(
+			"https://mobile.guardianapis.com/uk/groups/collections/f6be4f31-749f-4b4e-ac3b-42afc35454d4",
+			GuMobileFrontsResponse.class
+		);
+
+		System.out.println("Initial = " + clockResponse.getData().getModules().getRenewablesModule().getInitial());
+		System.out.println("Rate = " + clockResponse.getData().getModules().getRenewablesModule().getRate());
+		System.out.println("Timestamp = " + clockResponse.getData().getModules().getRenewablesModule().getTimestamp());
+		for (GuMobileCardData cardData:  guMobileFrontsResponse.getCards()) {
+			System.out.println("Title = " + cardData.getItem().getTitle());
+			System.out.println("Date = " + cardData.getItem().getWebPublicationDate());
+			System.out.println("Link = " + cardData.getItem().getLinks().getWebUri());
+		}
 		ClimateCrisisData climateCrisisData = new ClimateCrisisData();
 		climateCrisisData.setClockResponse(clockResponse);
+		climateCrisisData.setGuMobileFrontsResponse(guMobileFrontsResponse);
 		return handlebars.compile("clock").apply(climateCrisisData);
 	}
 
