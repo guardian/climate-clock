@@ -43,7 +43,10 @@ public class ClimateClockApplication {
 	}
 
 	@GetMapping("/clock")
-	public String clock(@NonNull RestTemplate restTemplate) throws IOException {
+	public String clock(
+			@NonNull RestTemplate restTemplate,
+			@RequestParam(value = "style", defaultValue = "default") String stylesheet
+	) throws IOException {
 		final ClockResponse clockResponse = restTemplate.getForObject(
 				"https://api.climateclock.world/v1/clock",
 				ClockResponse.class
@@ -65,6 +68,7 @@ public class ClimateClockApplication {
 		ClimateCrisisData climateCrisisData = new ClimateCrisisData();
 		climateCrisisData.setClockResponse(clockResponse);
 		climateCrisisData.setGuMobileFrontsResponse(guMobileFrontsResponse);
+		climateCrisisData.setStylesheet(stylesheet);
 		return handlebars.compile("clock").apply(climateCrisisData);
 	}
 

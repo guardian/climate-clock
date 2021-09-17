@@ -3,8 +3,8 @@ package com.gu.climateclock.model;
 public class ClimateCrisisData {
  
     public ClockResponse clockResponse;
-
     public GuMobileFrontsResponse guMobileFrontsResponse;
+    public String stylesheet;
 
     public ClockResponse getClockResponse() {
         return clockResponse;
@@ -20,6 +20,14 @@ public class ClimateCrisisData {
 
     public void setGuMobileFrontsResponse(GuMobileFrontsResponse guMobileFrontsResponse) {
         this.guMobileFrontsResponse = guMobileFrontsResponse;
+    }
+
+    public String getStylesheet() {
+        return stylesheet;
+    }
+
+    public void setStylesheet(String stylesheet) {
+        this.stylesheet = stylesheet;
     }
 
     
