@@ -1,4 +1,33 @@
+@font-face {
+  font-family: "Guardian Titlepiece";
+  src: url("https://interactive.guim.co.uk/fonts/garnett/GTGuardianTitlepiece-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Text Sans";
+  src: url("https://assets.guim.co.uk/static/frontend/fonts/guardian-textsans/noalts-not-hinted/GuardianTextSans-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Guardian Headline";
+  src: url("https://interactive.guim.co.uk/fonts/garnett/GHGuardianHeadline-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Guardian Headline Bold";
+  src: url("https://interactive.guim.co.uk/fonts/garnett/GHGuardianHeadline-Bold.woff2") format("woff2");
+}
+
 body {
-  font-family: Arial, sans;
-  font-size: 12pt;
+  font-family: "Guardian Headline", Arial, sans;
+  font-size: 14pt;
+}
+
+h1 {
+  font-family: "Guardian Titlepiece", Georgia, serif;
+  font-size: 2.6em;
+}
+
+h2 {
+  font-family: "Guardian Headline Bold", Arial, sans;
 }
