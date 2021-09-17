@@ -8,20 +8,19 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CarbonDeadlineModule {
     
-    public String deadline;
+    public String description;
     public String flavor;
     public List<String> labels;
-    public String timestamp;
+    public Deadline timestamp;
     public String type;
-
     public int updateIntervalSeconds;
 
-    public String getDeadline() {
-        return deadline;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDeadline(String deadline) {
-        this.deadline = deadline;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getFlavor() {
@@ -40,11 +39,11 @@ public class CarbonDeadlineModule {
         this.labels = labels;
     }
 
-    public String getTimestamp() {
+    public Deadline getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(Deadline timestamp) {
         this.timestamp = timestamp;
     }
 
