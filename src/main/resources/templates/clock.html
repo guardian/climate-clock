@@ -6,6 +6,48 @@
     <link rel="stylesheet" type="text/css" href="/default.css"/>
 </head>
 <body>
-  <p>Climate clock API response status: {{clockResponse.status}}</p>
+
+<h1>Climate crisis</h1>
+
+{{#with clockResponse}}
+{{#with data.modules.carbonDeadlineModule}}
+<section class="flavor-{{flavor}}">
+    <h2>Carbon deadline</h2>
+    <p class="description">{{description}}</p>
+    <p>
+        <strong>
+            <span class="time-amount">{{timestamp.yearsPart}}</span>
+            <span class="time-unit">years</span>
+            <span class="time-amount">{{timestamp.daysPart}}</span>
+            <span class="time-unit">days</span>
+        </strong>
+    </p>
+</section>
+{{/with}}
+
+{{#with data.modules.renewablesModule}}
+<section class="flavor-{{flavor}}">
+    <h2>Renewables</h2>
+    <p class="description">{{description}}</p>
+    <p>TODO %</p>
+</section>
+{{/with}}
+{{/with}}
+
+{{#with guMobileFrontsResponse}}
+<section>
+    <h2>Latest news</h2>
+    <p>Climate crisis headlines from <a href="https://www.theguardian.com/environment/climate-crisis">The Guardian</a></p>
+    <ul>
+        {{#each cards}}
+        <li>
+            <a href="{{item.links.webUri}}">{{item.title}}</a>
+            <time datetime="{{item.machineDate}}">{{item.humanDate}}</time>
+        </li>
+        {{/each}}
+    </ul>
+</section>
+{{/with}}
+
 </body>
 </html>

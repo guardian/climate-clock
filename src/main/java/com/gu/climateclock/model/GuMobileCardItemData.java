@@ -1,13 +1,19 @@
 package com.gu.climateclock.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GuMobileCardItemData {
     
     public String title;
 
-    public String webPublicationDate;
+    public Date webPublicationDate;
 
     public String lastModified;
 
@@ -21,11 +27,11 @@ public class GuMobileCardItemData {
         this.title = title;
     }
 
-    public String getWebPublicationDate() {
+    public Date getWebPublicationDate() {
         return webPublicationDate;
     }
 
-    public void setWebPublicationDate(String webPublicationDate) {
+    public void setWebPublicationDate(Date webPublicationDate) {
         this.webPublicationDate = webPublicationDate;
     }
 
@@ -45,5 +51,16 @@ public class GuMobileCardItemData {
         this.links = links;
     }
 
-    
+    @JsonIgnore
+    public String getMachineDate() {
+        return machineDateFormat.format(webPublicationDate);
+    }
+
+    @JsonIgnore
+    public String getHumanDate() {
+        return humanDateFormat.format(webPublicationDate);
+    }
+
+    private static final DateFormat machineDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.UK);
+    private static final DateFormat humanDateFormat = SimpleDateFormat.getDateInstance(DateFormat.LONG, Locale.UK);
 }
