@@ -1,0 +1,25 @@
+body {
+  font-family: "Comic Sans MS", "Comic Sans";
+  background-color: lightblue;
+  font-size: 14pt;
+}
+
+.flavor-deadline h2 {
+  color: red;
+}
+
+strong {
+  background: yellow;
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.flavor-lifeline h2 {
+  color: green;
+}
+
