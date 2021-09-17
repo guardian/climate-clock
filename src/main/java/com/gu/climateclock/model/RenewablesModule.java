@@ -15,7 +15,7 @@ public class RenewablesModule {
     public double rate;
     public double resolution;
     public List<String> labels;
-    public String timestamp;
+    public Deadline timestamp;
     public String type;
     public int updateIntervalSeconds;
 
@@ -61,10 +61,10 @@ public class RenewablesModule {
     public void setLabels(List<String> labels) {
         this.labels = labels;
     }
-    public String getTimestamp() {
+    public Deadline getTimestamp() {
         return timestamp;
     }
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(Deadline timestamp) {
         this.timestamp = timestamp;
     }
     public String getType() {
@@ -82,5 +82,7 @@ public class RenewablesModule {
         this.updateIntervalSeconds = updateIntervalSeconds;
     }
 
-    
+    public double getCurrentPercentage() {
+        return initial + timestamp.timeUntil().getSeconds()*rate*-1.0;
+    }
 }

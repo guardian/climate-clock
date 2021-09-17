@@ -21,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
+
 @SpringBootApplication
 @RestController
 public class ClimateClockApplication {
@@ -57,9 +58,11 @@ public class ClimateClockApplication {
 			GuMobileFrontsResponse.class
 		);
 
+		System.out.println("Deadline timestamp = " + clockResponse.getData().getModules().getCarbonDeadlineModule().getTimestamp().toString());
 		System.out.println("Initial = " + clockResponse.getData().getModules().getRenewablesModule().getInitial());
 		System.out.println("Rate = " + clockResponse.getData().getModules().getRenewablesModule().getRate());
-		System.out.println("Timestamp = " + clockResponse.getData().getModules().getRenewablesModule().getTimestamp());
+		System.out.println("Timestamp = " + clockResponse.getData().getModules().getRenewablesModule().getTimestamp().toString());
+
 		for (GuMobileCardData cardData:  guMobileFrontsResponse.getCards()) {
 			System.out.println("Title = " + cardData.getItem().getTitle());
 			System.out.println("Date = " + cardData.getItem().getWebPublicationDate());
