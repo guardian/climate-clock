@@ -32,4 +32,16 @@ public class Deadline {
     public int getDaysPart() {
         return (int) timeUntil().toDaysPart() % 365;
     }
+
+    public int getHoursPart() {
+        return timeUntil().toHoursPart();
+    }
+
+    public int getMinutesPart() {
+        return timeUntil().toMinutesPart();
+    }
+
+    public int getSecondsPart() {
+        return timeUntil().toSecondsPart();
+    }
 }
