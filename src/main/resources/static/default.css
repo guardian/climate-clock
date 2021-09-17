@@ -14,8 +14,8 @@
 }
 
 @font-face {
-  font-family: "Guardian Headline Bold";
-  src: url("https://interactive.guim.co.uk/fonts/garnett/GHGuardianHeadline-Bold.woff2") format("woff2");
+  font-family: "Guardian Headline Medium";
+  src: url("https://interactive.guim.co.uk/fonts/garnett/GHGuardianHeadline-Medium.woff2") format("woff2");
 }
 
 body {
@@ -29,5 +29,5 @@ h1 {
 }
 
 h2 {
-  font-family: "Guardian Headline Bold", Arial, sans;
+  font-family: "Guardian Headline Medium", Arial, sans;
 }
