@@ -6,6 +6,25 @@
     <link rel="stylesheet" type="text/css" href="/default.css"/>
 </head>
 <body>
-  <p>Climate clock API response status: {{clockResponse.status}}</p>
+
+<h1>Climate crisis</h1>
+
+{{#with clockResponse}}
+
+{{#with data.modules.carbonDeadlineModule}}
+<section class="flavor-{{flavor}}">
+    <h2>Carbon deadline</h2>
+    <p class="description">{{description}}</p>
+    <p>
+        <span class="time-amount">{{timestamp.yearsPart}}</span>
+        <span class="time-unit">years</span>
+        <span class="time-amount">{{timestamp.daysPart}}</span>
+        <span class="time-unit">days</span>
+    </p>
+</section>
+{{/with}}
+
+{{/with}}
+
 </body>
 </html>
