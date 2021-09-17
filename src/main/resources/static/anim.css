@@ -1,0 +1,70 @@
+@font-face {
+  font-family: "Guardian Titlepiece";
+  src: url("https://interactive.guim.co.uk/fonts/garnett/GTGuardianTitlepiece-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Text Sans";
+  src: url("https://assets.guim.co.uk/static/frontend/fonts/guardian-textsans/noalts-not-hinted/GuardianTextSans-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Guardian Headline";
+  src: url("https://interactive.guim.co.uk/fonts/garnett/GHGuardianHeadline-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Guardian Headline Medium";
+  src: url("https://interactive.guim.co.uk/fonts/garnett/GHGuardianHeadline-Medium.woff2") format("woff2");
+}
+
+body {
+  font-family: "Guardian Headline", Arial, sans;
+  font-size: 14pt;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #E3E4E5;
+}
+
+h1 {
+  font-family: "Guardian Titlepiece", Georgia, serif;
+  font-size: 2.6em;
+  width: 100%;
+}
+
+h2 {
+  font-family: "Guardian Headline Medium", Arial, sans;
+}
+
+/* The animation code */
+@keyframes carbon-anim {
+  0% {background-color: white;}
+  50%   {background-color: #FF3115;}
+  100% {background-color: white;}
+}
+
+@keyframes renew-anim {
+  0% {background-color: white;}
+  50%   {background-color: #0FD87D;}
+  100% {background-color: white;}
+}
+
+section.flavor-deadline {
+  width: 45%;
+  border-style: groove;
+  border-color: coral;
+  border-width: 4px;
+  animation-name: carbon-anim;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;  
+}
+
+section.flavor-lifeline {
+  width: 45%;
+  border-style: groove;
+  border-color: coral;
+  border-width: 4px;
+  animation-name: renew-anim;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;  
+}
